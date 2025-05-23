@@ -6,6 +6,11 @@ body {
 }
 
 /* Cabeçalho */
+.navbar-nav .nav-link {
+    font-size: 0.9rem; /* Reduz o tamanho da fonte do menu */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
 .navbar-brand {
     font-family: 'Merriweather', serif;
     font-weight: 700;

@@ -30,6 +30,42 @@ body {
     display: none;
 }
 
+/* Classes para headers específicos de cada seção */
+.hero-section-arqueologia {
+    background-image: url('../img/arqueologia-card.jpg');
+}
+
+.hero-section-contexto {
+    background-image: url('../img/contexto-historico-card.jpg');
+}
+
+.hero-section-curiosidades {
+    background-image: url('../img/curiosidades-card.jpg');
+}
+
+.hero-section-comparacoes {
+    background-image: url('../img/comparacoes-card.jpg');
+}
+
+.hero-section-vida {
+    background-image: url('../img/vida-cotidiana-card.jpg');
+}
+
+.hero-section-estudo {
+    background-image: url('../img/estudo-biblia-card.jpg');
+}
+
+/* Estilo comum para todos os headers de seção */
+.hero-section-arqueologia, .hero-section-contexto, .hero-section-curiosidades,
+.hero-section-comparacoes, .hero-section-vida, .hero-section-estudo {
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 0;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
 /* Cards */
 .card {
     border: none;

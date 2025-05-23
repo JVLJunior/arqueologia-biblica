@@ -1,0 +1,33 @@
+/* Estilo para a tarja de "Em Construção" */
+.construction-banner {
+    background-color: #f8d7da;
+    color: #721c24;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 16px;
+    border-bottom: 1px solid #f5c6cb;
+}
+
+/* Ajuste para o conteúdo da página não ficar escondido atrás da tarja */
+body {
+    padding-top: 40px;
+}
+
+/* Versão responsiva para dispositivos móveis */
+@media (max-width: 768px) {
+    .construction-banner {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+    
+    body {
+        padding-top: 36px;
+    }
+}

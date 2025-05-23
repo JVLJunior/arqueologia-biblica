@@ -65,6 +65,19 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* Garantir que o texto seja legível em qualquer fundo */
+.hero-section-arqueologia h1, .hero-section-contexto h1, 
+.hero-section-curiosidades h1, .hero-section-comparacoes h1,
+.hero-section-vida h1, .hero-section-estudo h1,
+.hero-section-arqueologia p, .hero-section-contexto p,
+.hero-section-curiosidades p, .hero-section-comparacoes p,
+.hero-section-vida p, .hero-section-estudo p {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
 
 /* Cards */
 .card {

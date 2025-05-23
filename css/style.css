@@ -17,8 +17,8 @@ body {
     margin-bottom: 2rem;
     background-image: url('../img/header-banner-historia.jpg');
     background-size: cover;
-    background-position: center;
-    height: 650px; /* Ajuste este valor conforme necessário */
+    background-position: center top;
+    height: 450px; /* Ajuste este valor conforme necessário */
 }
 
 .hero-section h1, .hero-section p {

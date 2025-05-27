@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistérios da Bíblia: Detetives de Histórias</title>
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4e8;
+            color: #333;
+        }
+
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para o cabeçalho */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #4a6da7;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+        }
+
+        .header h2 {
+            color: #e67e22;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Estilos para a barra de progresso */
+        .progress-bar {
+            margin: 20px 0;
+        }
+
+        .progress-text {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .progress-container {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4a6da7, #8e44ad);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Estilos para a lista de mistérios */
+        .mysteries-list {
+            margin: 30px 0;
+        }
+
+        .mysteries-list h3 {
+            color: #4a6da7;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .mystery-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .mystery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .mystery-card.completed {
+            background-color: #f0f8ff;
+            border: 2px solid #4a6da7;
+        }
+
+        .mystery-content h4 {
+            color: #e67e22;
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .mystery-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .difficulty {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .difficulty.facil {
+            background-color: #a8f0a8;
+            color: #2e7d32;
+        }
+
+        .difficulty.medio {
+            background-color: #fff59d;
+            color: #f57f17;
+        }
+
+        .difficulty.dificil {
+            background-color: #ffcdd2;
+            color: #c62828;
+        }
+
+        .completed-badge {
+            background-color: #4a6da7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Estilos para os botões */
+        .primary-button, .secondary-button {
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            margin: 10px 5px;
+        }
+
+        .primary-button {
+            background-color: #4a6da7;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background-color: #3a5a8f;
+            transform: scale(1.05);
+        }
+
+        .secondary-button {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+
+        .secondary-button:hover {
+            background-color: #d0d0d0;
+            transform: scale(1.05);
+        }
+
+        /* Estilos para a tela de mistério */
+        .mystery-case {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mystery-intro h2, .clues-stage h2, .questions-stage h2, .conclusion-stage h2 {
+            color: #4a6da7;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .biblical-story {
+            background-color: #f8f4e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+
+        .biblical-story h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        /* Estilos para a cena de pistas */
+        .clues-scene {
+            position: relative;
+            height: 300px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .scene-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clue-spots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clue-spot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e67e22;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .clue-spot:hover {
+            transform: scale(1.1);
+        }
+
+        .clue-spot.found {
+            background-color: #4a6da7;
+        }
+
+        .spot-1 { top: 20%; left: 20%; }
+        .spot-2 { top: 30%; left: 70%; }
+        .spot-3 { top: 60%; left: 40%; }
+        .spot-4 { top: 70%; left: 80%; }
+
+        .clues-found {
+            background-color: #f8f4e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .clues-found h3 {
+            color: #4a6da7;
+            margin-top: 0;
+        }
+
+        .clues-found ul {
+            padding-left: 20px;
+        }
+
+        .clues-found li {
+            margin-bottom: 5px;
+        }
+
+        /* Estilos para as perguntas */
+        .question-card {
+            background-color: #f8f4e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-button {
+            padding: 12px 15px;
+            border-radius: 10px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option-button.selected {
+            border-color: #4a6da7;
+            background-color: #e6f0ff;
+        }
+
+        .option-button.correct {
+            border-color: #4caf50;
+            background-color: #e8f5e9;
+        }
+
+        .option-button.incorrect {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .result-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result-feedback.correct {
+            background-color: #e8f5e9;
+            border: 2px solid #4caf50;
+        }
+
+        .result-feedback.incorrect {
+            background-color: #ffebee;
+            border: 2px solid #f44336;
+        }
+
+        /* Estilos para a conclusão */
+        .score-card {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .score-display {
+            margin: 20px 0;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a6da7;
+        }
+
+        .score-message {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .mystery-summary {
+            background-color: #f8f4e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+
+        /* Estilos para a tela de recompensas */
+        .rewards-screen {
+            background-color: #f0f8ff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .rewards-content h2 {
+            color: #4a6da7;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .medal-display {
+            margin: 30px 0;
+        }
+
+        .medal {
+            font-size: 5rem;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .bible-verse {
+            background-color: #f8f4e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 80%;
+            border-left: 5px solid #e67e22;
+        }
+
+        .verse-reference {
+            font-style: italic;
+            color: #888;
+        }
+
+        .all-completed {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff8e1;
+            border-radius: 10px;
+            border: 2px dashed #ffc107;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .primary-button, .secondary-button {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="game-container">
+        <!-- O conteúdo do jogo será renderizado aqui pelo JavaScript -->
+    </div>
+
+    <script>
+        // Definição dos tipos e interfaces
+        class Mystery {
+            constructor(id, title, description, difficulty, biblicalStory, clues, questions) {
+                this.id = id;
+                this.title = title;
+                this.description = description;
+                this.difficulty = difficulty;
+                this.completed = false;
+                this.biblicalStory = biblicalStory;
+                this.clues = clues;
+                this.questions = questions;
+            }
+        }
+
+        // Estado global do jogo
+        const gameState = {
+            currentScreen: 'menu', // 'menu', 'playing', 'rewards'
+            currentMystery: null,
+            completedMysteries: [],
+            mysteries: [
+                new Mystery(
+                    'arca-noe',
+                    'O Mistério da Arca Perdida',
+                    'Ajude o Detetive Daniel a encontrar pistas sobre como era a Arca de Noé!',
+                    'facil',
+                    'Deus ordenou a Noé que construísse uma arca para salvar sua família e os animais do dilúvio. A arca era feita de madeira de cipreste e tinha três andares.',
+                    [
+                        'A arca tinha três andares',
+                        'Foi construída com madeira de cipreste',
+                        'Tinha uma porta na lateral',
+                        'Deus enviou os animais até Noé'
+                    ],
+                    [
+                        {
+                            question: 'Quantos andares tinha a Arca de Noé?',
+                            options: ['Um andar', 'Dois andares', 'Três andares', 'Quatro andares'],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: 'Qual material foi usado para construir a Arca?',
+                            options: ['Pedra', 'Madeira de cipreste', 'Metal', 'Bambu'],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: 'Quem enviou os animais para a Arca?',
+                            options: ['Noé os capturou', 'Os anjos', 'Deus', 'Vieram sozinhos'],
+                            correctAnswer: 2
+                        }
+                    ]
+                ),
+                new Mystery(
+                    'davi-golias',
+                    'O Mistério da Pedra de Davi',
+                    'Descubra como um jovem pastor derrotou um gigante com apenas uma pedra!',
+                    'medio',
+                    'Davi era um jovem pastor que enfrentou o gigante Golias com apenas uma funda e cinco pedras lisas. Com sua fé em Deus, ele acertou Golias na testa com a primeira pedra.',
+                    [
+                        'Davi era um pastor de ovelhas',
+                        'Ele usou uma funda como arma',
+                        'Escolheu cinco pedras lisas do riacho',
+                        'Acertou Golias na testa'
+                    ],
+                    [
+                        {
+                            question: 'Qual era a profissão de Davi antes de enfrentar Golias?',
+                            options: ['Soldado', 'Carpinteiro', 'Pastor de ovelhas', 'Pescador'],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: 'Quantas pedras Davi pegou do riacho?',
+                            options: ['Uma', 'Três', 'Cinco', 'Dez'],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: 'Onde Davi acertou Golias com a pedra?',
+                            options: ['No peito', 'Na testa', 'No braço', 'Na perna'],
+                            correctAnswer: 1
+                        }
+                    ]
+                ),
+                new Mystery(
+                    'jonas-baleia',
+                    'O Mistério do Homem e o Grande Peixe',
+                    'Investigue o caso do profeta que sobreviveu três dias dentro de um grande peixe!',
+                    'medio',
+                    'Jonas tentou fugir do chamado de Deus para pregar em Nínive. Durante uma tempestade no mar, ele foi jogado na água e engolido por um grande peixe, onde ficou por três dias e três noites.',
+                    [
+                        'Jonas não queria ir para Nínive',
+                        'Ele tentou fugir em um navio',
+                        'Uma grande tempestade surgiu no mar',
+                        'Jonas ficou três dias e três noites no peixe'
+                    ],
+                    [
+                        {
+                            question: 'Para qual cidade Deus mandou Jonas ir?',
+                            options: ['Jerusalém', 'Belém', 'Nínive', 'Jericó'],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: 'O que Jonas fez quando Deus o chamou?',
+                            options: ['Obedeceu imediatamente', 'Tentou fugir', 'Pediu mais tempo', 'Chamou outros profetas'],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: 'Quanto tempo Jonas ficou dentro do grande peixe?',
+                            options: ['Um dia', 'Dois dias', 'Três dias e três noites', 'Uma semana'],
+                            correctAnswer: 2
+                        }
+                    ]
+                )
+            ]
+        };
+
+        // Funções de renderização
+        function renderMainMenu() {
+            const app = document.getElementById('app');
+            
+            // Atualizar o status de completado para cada mistério
+            const mysteries = gameState.mysteries.map(mystery => {
+                return {
+                    ...mystery,
+                    completed: gameState.completedMysteries.includes(mystery.id)
+                };
+            });
+            
+            const completedCount = gameState.completedMysteries.length;
+            
+            app.innerHTML = `
+                <div class="main-menu">
+                    <div class="header">
+                        <h1>Mistérios da Bíblia</h1>
+                        <h2>Detetives de Histórias</h2>
+                        <p class="subtitle">Desvende os mistérios das histórias bíblicas!</p>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-text">
+                            Medalhas conquistadas: ${completedCount} de ${mysteries.length}
+                        </div>
+                        <div class="progress-container">
+                            <div 
+                                class="progress-fill" 
+                                style="width: ${(completedCount / mysteries.length) * 100}%"
+                            ></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mysteries-list">
+                        <h3>Escolha um mistério para investigar:</h3>
+                        
+                        ${mysteries.map((mystery) => `
+                            <div 
+                                class="mystery-card ${mystery.completed ? 'completed' : ''}"
+                                onclick="startMystery('${mystery.id}')"
+                            >
+                                <div class="mystery-content">
+                                    <h4>${mystery.title}</h4>
+                                    <p>${mystery.description}</p>
+                                    <div class="mystery-footer">
+                                        <span class="difficulty ${mystery.difficulty}">
+                                            ${mystery.difficulty === 'facil' ? 'Fácil' : 
+                                              mystery.difficulty === 'medio' ? 'Médio' : 'Difícil'}
+                                        </span>
+                                        ${mystery.completed ? `
+                                            <span class="completed-badge">
+                                                <span role="img" aria-label="Completado">🏅</span> Resolvido!
+                                            </span>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Escolha um dos mistérios acima para começar sua investigação!</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMysteryCase() {
+            const app = document.getElementById('app');
+            const mystery = gameState.currentMystery;
+            
+            if (!mystery) {
+                renderMainMenu();
+                return;
+            }
+            
+            if (!mystery.stage) {
+                mystery.stage = 'intro';
+            }
+            
+            if (!mystery.foundClues) {
+                mystery.foundClues = [];
+            }
+            
+            if (!mystery.currentQuestionIndex) {
+                mystery.currentQuestionIndex = 0;
+            }
+            
+            if (!mystery.selectedAnswers) {
+                mystery.selectedAnswers = [];
+            }
+            
+            if (!mystery.showResult) {
+                mystery.showResult = false;
+            }
+            
+            let content = '';
+            
+            if (mystery.stage === 'intro') {
+                content = `
+                    <div class="mystery-intro">
+                        <h2>${mystery.title}</h2>
+                        <div class="mystery-description">
+                            <p>${mystery.description}</p>
+                        </div>
+                        <div class="biblical-story">
+                            <h3>A História Bíblica</h3>
+                            <p>${mystery.biblicalStory}</p>
+                        </div>
+                        <button 
+                            class="primary-button"
+                            onclick="setMysteryStage('clues')"
+                        >
+                            Começar Investigação
+                        </button>
+                        <button 
+                            class="secondary-button"
+                            onclick="returnToMenu()"
+                        >
+                            Voltar ao Menu
+                        </button>
+                    </div>
+                `;
+            } else if (mystery.stage === 'clues') {
+                content = `
+                    <div class="clues-stage">
+                        <h2>Procure as Pistas!</h2>
+                        <div class="clues-scene">
+                            <div class="scene-image">
+                                <div class="clue-spots">
+                                    ${mystery.clues.map((clue, index) => `
+                                        <button 
+                                            class="clue-spot spot-${index + 1} ${mystery.foundClues.includes(clue) ? 'found' : ''}"
+                                            onclick="findClue('${clue}')"
+                                        >
+                                            ${mystery.foundClues.includes(clue) ? '✓' : '?'}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="clues-found">
+                            <h3>Pistas Encontradas: ${mystery.foundClues.length}/${mystery.clues.length}</h3>
+                            <ul>
+                                ${mystery.foundClues.map((clue, index) => `
+                                    <li>${clue}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        ${mystery.foundClues.length === mystery.clues.length ? `
+                            <button 
+                                class="primary-button"
+                                onclick="setMysteryStage('questions')"
+                            >
+                                Responder Perguntas
+                            </button>
+                        ` : ''}
+                        
+                        <button 
+                            class="secondary-button"
+                            onclick="returnToMenu()"
+                        >
+                            Voltar ao Menu
+                        </button>
+                    </div>
+                `;
+            } else if (mystery.stage === 'questions') {
+                const currentQuestion = mystery.questions[mystery.currentQuestionIndex];
+                
+                content = `
+                    <div class="questions-stage">
+                        <h2>Teste seu Conhecimento</h2>
+                        <div class="question-card">
+                            <h3>Pergunta ${mystery.currentQuestionIndex + 1} de ${mystery.questions.length}</h3>
+                            <p class="question-text">${currentQuestion.question}</p>
+                            
+                            <div class="options-list">
+                                ${currentQuestion.options.map((option, index) => `
+                                    <button 
+                                        class="option-button ${mystery.selectedAnswers[mystery.currentQuestionIndex] === index ? 'selected' : ''} ${
+                                            mystery.showResult ? (
+                                                index === currentQuestion.correctAnswer ? 'correct' : 'incorrect'
+                                            ) : ''
+                                        }"
+                                        onclick="${!mystery.showResult ? `selectAnswer(${index})` : ''}"
+                                        ${mystery.showResult ? 'disabled' : ''}
+                                    >
+                                        ${option}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            
+                            ${mystery.showResult ? `
+                                <div class="result-feedback ${isCorrectAnswer() ? 'correct' : 'incorrect'}">
+                                    ${isCorrectAnswer() ? `
+                                        <p>Correto! Muito bem!</p>
+                                    ` : `
+                                        <p>Ops! A resposta correta é: ${
+                                            currentQuestion.options[currentQuestion.correctAnswer]
+                                        }</p>
+                                    `}
+                                    <button 
+                                        class="primary-button"
+                                        onclick="nextQuestion()"
+                                    >
+                                        ${mystery.currentQuestionIndex < mystery.questions.length - 1 ? 'Próxima Pergunta' : 'Ver Resultado'}
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            } else if (mystery.stage === 'conclusion') {
+                content = `
+                    <div class="conclusion-stage">
+                        <h2>Mistério Resolvido!</h2>
+                        <div class="score-card">
+                            <h3>Sua Pontuação</h3>
+                            <div class="score-display">
+                                <span class="score-value">${calculateScore()}%</span>
+                            </div>
+                            <p class="score-message">
+                                ${calculateScore() >= 70 
+                                    ? 'Parabéns! Você é um excelente detetive bíblico!' 
+                                    : 'Continue praticando para se tornar um detetive bíblico melhor!'}
+                            </p>
+                        </div>
+                        
+                        <div class="mystery-summary">
+                            <h3>O que Aprendemos</h3>
+                            <p>${mystery.biblicalStory}</p>
+                        </div>
+                        
+                        <button 
+                            class="primary-button"
+                            onclick="completeMystery('${mystery.id}')"
+                        >
+                            Receber Medalha
+                        </button>
+                        
+                        <button 
+                            class="secondary-button"
+                            onclick="returnToMenu()"
+                        >
+                            Voltar ao Menu
+                        </button>
+                    </div>
+                `;
+            }
+            
+            app.innerHTML = `
+                <div class="mystery-case">
+                    ${content}
+                </div>
+            `;
+        }
+
+        function renderRewards() {
+            const app = document.getElementById('app');
+            const totalMysteries = gameState.mysteries.length;
+            const completedCount = gameState.completedMysteries.length;
+            
+            app.innerHTML = `
+                <div class="rewards-screen">
+                    <div class="rewards-content">
+                        <h2>Parabéns, Detetive!</h2>
+                        
+                        <div class="medal-display">
+                            <div class="medal">🏅</div>
+                            <h3>Você ganhou uma medalha!</h3>
+                            <p>Continue investigando para colecionar todas as medalhas.</p>
+                        </div>
+                        
+                        <div class="progress-stats">
+                            <h3>Seu Progresso</h3>
+                            <div class="progress-bar">
+                                <div 
+                                    class="progress-fill" 
+                                    style="width: ${(completedCount / totalMysteries) * 100}%"
+                                ></div>
+                            </div>
+                            <p>${completedCount} de ${totalMysteries} mistérios resolvidos</p>
+                            
+                            ${completedCount === totalMysteries ? `
+                                <div class="all-completed">
+                                    <h3>🎉 Você completou todos os mistérios! 🎉</h3>
+                                    <p>Você é um verdadeiro Detetive Bíblico!</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="bible-verse">
+                            <h3>Versículo do Dia</h3>
+                            <p>"Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele."</p>
+                            <p class="verse-reference">Provérbios 22:6</p>
+                        </div>
+                        
+                        <button 
+                            class="primary-button"
+                            onclick="returnToMenu()"
+                        >
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Funções de controle do jogo
+        function startMystery(mysteryId) {
+            const mystery = gameState.mysteries.find(m => m.id === mysteryId);
+            if (mystery) {
+                // Reset do estado do mistério
+                mystery.stage = 'intro';
+                mystery.foundClues = [];
+                mystery.currentQuestionIndex = 0;
+                mystery.selectedAnswers = [];
+                mystery.showResult = false;
+                
+                gameState.currentMystery = mystery;
+                gameState.currentScreen = 'playing';
+                renderMysteryCase();
+            }
+        }
+
+        function setMysteryStage(stage) {
+            if (gameState.currentMystery) {
+                gameState.currentMystery.stage = stage;
+                renderMysteryCase();
+            }
+        }
+
+        function findClue(clue) {
+            if (gameState.currentMystery) {
+                if (!gameState.currentMystery.foundClues.includes(clue)) {
+                    gameState.currentMystery.foundClues.push(clue);
+                }
+                renderMysteryCase();
+            }
+        }
+
+        function selectAnswer(answerIndex) {
+            if (gameState.currentMystery) {
+                gameState.currentMystery.selectedAnswers[gameState.currentMystery.currentQuestionIndex] = answerIndex;
+                gameState.currentMystery.showResult = true;
+                renderMysteryCase();
+            }
+        }
+
+        function isCorrectAnswer() {
+            if (gameState.currentMystery) {
+                const currentQuestion = gameState.currentMystery.questions[gameState.currentMystery.currentQuestionIndex];
+                return gameState.currentMystery.selectedAnswers[gameState.currentMystery.currentQuestionIndex] === currentQuestion.correctAnswer;
+            }
+            return false;
+        }
+
+        function nextQuestion() {
+            if (gameState.currentMystery) {
+                gameState.currentMystery.showResult = false;
+                if (gameState.currentMystery.currentQuestionIndex < gameState.currentMystery.questions.length - 1) {
+                    gameState.currentMystery.currentQuestionIndex++;
+                } else {
+                    gameState.currentMystery.stage = 'conclusion';
+                }
+                renderMysteryCase();
+            }
+        }
+
+        function calculateScore() {
+            if (gameState.currentMystery) {
+                let correctCount = 0;
+                gameState.currentMystery.selectedAnswers.forEach((answer, index) => {
+                    if (answer === gameState.currentMystery.questions[index].correctAnswer) {
+                        correctCount++;
+                    }
+                });
+                return Math.round((correctCount / gameState.currentMystery.questions.length) * 100);
+            }
+            return 0;
+        }
+
+        function completeMystery(mysteryId) {
+            if (!gameState.completedMysteries.includes(mysteryId)) {
+                gameState.completedMysteries.push(mysteryId);
+            }
+            gameState.currentScreen = 'rewards';
+            renderRewards();
+        }
+
+        function returnToMenu() {
+            gameState.currentScreen = 'menu';
+            gameState.currentMystery = null;
+            renderMainMenu();
+        }
+
+        // Inicialização do jogo
+        function initGame() {
+            // Carregar dados salvos do localStorage, se existirem
+            const savedState = localStorage.getItem('misteriosBibliaState');
+            if (savedState) {
+                try {
+                    const parsedState = JSON.parse(savedState);
+                    gameState.completedMysteries = parsedState.completedMysteries || [];
+                } catch (e) {
+                    console.error('Erro ao carregar estado salvo:', e);
+                }
+            }
+            
+            // Renderizar a tela inicial
+            renderMainMenu();
+        }
+
+        // Salvar estado do jogo
+        function saveGameState() {
+            try {
+                localStorage.setItem('misteriosBibliaState', JSON.stringify({
+                    completedMysteries: gameState.completedMysteries
+                }));
+            } catch (e) {
+                console.error('Erro ao salvar estado do jogo:', e);
+            }
+        }
+
+        // Adicionar funções ao escopo global para acesso via HTML
+        window.startMystery = startMystery;
+        window.setMysteryStage = setMysteryStage;
+        window.findClue = findClue;
+        window.selectAnswer = selectAnswer;
+        window.nextQuestion = nextQuestion;
+        window.completeMystery = completeMystery;
+        window.returnToMenu = returnToMenu;
+
+        // Iniciar o jogo quando a página carregar
+        document.addEventListener('DOMContentLoaded', initGame);
+
+        // Salvar o estado do jogo quando a página for fechada
+        window.addEventListener('beforeunload', saveGameState);
+    </script>
+</body>
+</html>

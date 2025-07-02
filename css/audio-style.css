@@ -1,0 +1,158 @@
+/* Estilos específicos para a seção de Áudio para Igrejas */
+
+/* Estilo do header com a imagem de fundo */
+.hero-section-audio {
+    background-image: url('../img/header-audio-arqueologia-final.jpg');
+    background-color: #2c3e50;
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 0;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para os cards de recursos */
+.resource-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.resource-icon {
+    font-size: 2.5rem;
+    color: #4a6da7;
+    margin-bottom: 15px;
+}
+
+/* Estilos para os artigos de áudio */
+.audio-article {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+.audio-article h1 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+}
+
+.audio-article h2 {
+    color: #4a6da7;
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
+    font-size: 1.8rem;
+}
+
+.audio-article h3 {
+    color: #5d7ea9;
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-size: 1.4rem;
+}
+
+.audio-article p {
+    margin-bottom: 1.2em;
+    color: #333;
+}
+
+.audio-article ul, .audio-article ol {
+    margin-bottom: 1.2em;
+    padding-left: 2em;
+}
+
+.audio-article li {
+    margin-bottom: 0.5em;
+}
+
+.audio-article img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.audio-article blockquote {
+    border-left: 4px solid #4a6da7;
+    padding-left: 1em;
+    margin-left: 0;
+    color: #555;
+    font-style: italic;
+}
+
+.audio-article code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+/* Estilos para a barra lateral */
+.sidebar-card {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.sidebar-card .card-title {
+    color: #4a6da7;
+    font-weight: 600;
+}
+
+.sidebar-card .list-group-item {
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-card .list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Estilos para navegação entre artigos */
+.article-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.article-navigation a {
+    color: #4a6da7;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #4a6da7;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.article-navigation a:hover {
+    background-color: #4a6da7;
+    color: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .hero-section-audio {
+        padding: 2rem 0;
+    }
+    
+    .audio-article h1 {
+        font-size: 1.8rem;
+    }
+    
+    .audio-article h2 {
+        font-size: 1.5rem;
+    }
+    
+    .audio-article h3 {
+        font-size: 1.2rem;
+    }
+}
